@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: reggie_take_out
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/reggie?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456
+  redis:
+    host: localhost
+    #password: root@123456
+    database: 0   #默认提供了16个数据库，0是指0号数据库
+  cache:
+    redis:
+      time-to-live: 1800000 #(1800000ms,1800s,设置缓存过期时间)
+    jedis:
+      #Redis链接池配置
+      pool:
+        max-active: 8 #最大连接数
+        max-wait: 1ms #链接池最大阻塞等待时间
+        max-idle: 4   #链接池中的最大空闲链接
+        min-idle: 0   #连接池中的最小空闲链接
+mybatis-plus:
+  configuration:
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+reggie:
+  path: D:\reggie_photos\
+
